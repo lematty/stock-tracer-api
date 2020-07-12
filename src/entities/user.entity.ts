@@ -1,8 +1,9 @@
 import { AbstractEntity } from './abstract-entity';
-import { Column, Entity, BeforeInsert } from 'typeorm';
+import { Column, Entity, BeforeInsert, OneToMany } from 'typeorm';
 import { IsEmail } from 'class-validator';
 import { Exclude, classToPlain } from 'class-transformer';
 import * as bcrypt from 'bcryptjs';
+import { StockEntity } from './stock.entity';
 
 
 @Entity('users')
@@ -17,6 +18,12 @@ export class UserEntity extends AbstractEntity {
   @Column()
   @Exclude()
   password: string;
+
+  @OneToMany(
+    () => StockEntity,
+    (stock) => stock.user
+  )
+  stocks: StockEntity[];
 
   @BeforeInsert()
   async hashPassword(): Promise<void> {

@@ -26,38 +26,85 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Stock Tracer API for [Stock Tracer App](https://github.com/lematty/stock-tracer)
 
 ## Installation
+To run this application, you will need to have already installed install [yarn](https://classic.yarnpkg.com/en/docs/install) & [docker-compose](https://docs.docker.com/compose/install/#install-compose)
 
 ```bash
-$ npm install
+$ yarn install
+```
+
+## Docker
+
+```bash
+# Start docker
+$ docker-compose up -d
 ```
 
 ## Running the app
 
 ```bash
 # development
-$ npm run start
+$ yarn run start
 
 # watch mode
-$ npm run start:dev
+$ yarn run start:dev
 
 # production mode
-$ npm run start:prod
+$ yarn run start:prod
 ```
+
+# Using the API
+
+## API documentation
+Swagger API documentation [here]() (coming soon)
+
+## Create users
+
+Authentication is required to use the API.
+
+You must first create a user at `/auth/register` with the following body
+
+```
+{
+  email: string;
+  username: string;
+  password: string;
+}
+```
+Specific property requirements are found in [user.model.ts](https://github.com/lematty/stock-tracer-api/blob/master/src/models/user.model.ts)
+
+
+## Getting a valid token for requests
+
+Once a user is created/registered, you can then login with `/auth/login` to get your token. This request requires a body:
+```
+{
+  email: string;
+  password: string;
+}
+```
+
+If validated, this will return a valid token to be provided with all other requests.
+
+## Making requests
+
+Once the user is created, and a valid token is obtained, you can the use all other endpoints of the API. All requets will require the token in the header similar to the following:
+
+Bearer Token YOUR_USER_TOKEN_HERE
 
 ## Test
 
 ```bash
 # unit tests
-$ npm run test
+$ yarn run test
 
 # e2e tests
-$ npm run test:e2e
+$ yarn run test:e2e
 
 # test coverage
-$ npm run test:cov
+$ yarn run test:cov
 ```
 
 ## Support

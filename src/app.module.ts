@@ -6,6 +6,7 @@ import { DatabaseConnectionService } from './database-connection/database-connec
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { StockModule } from './stock/stock.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { UserModule } from './user/user.module';
     }),
     AuthModule,
     UserModule,
+    StockModule,
   ],
   controllers: [AppController],
   providers: [AppService, DatabaseConnectionService],

@@ -9,7 +9,7 @@ export class UserService {
   constructor(@InjectRepository(UserEntity) private userRepository: Repository<UserEntity>) {}
 
   async findByUsername(username: string): Promise<UserEntity> {
-    return this.userRepository.findOne({ where: { username } });
+    return this.userRepository.findOne({ where: { username }, relations: ['stocks'] });
   }
 
   async updateUser(username: string, data: Partial<UserEntity>): Promise<UserEntity> {

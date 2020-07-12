@@ -1,11 +1,14 @@
 import { Controller, Get, UseGuards, Post, Body, ValidationPipe, Delete } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { User } from '../auth/user.decorator';
 import { UserEntity } from '../entities/user.entity';
 import { StockService } from '../stock/stock.service';
 import { StockEntity } from '../entities/stock.entity';
 import { StockDTO } from '../models/stock.model';
 
+@ApiTags('stock')
+@ApiBearerAuth()
 @Controller('stock')
 export class StockController {
 

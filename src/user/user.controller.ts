@@ -1,10 +1,13 @@
 import { Controller, Body, ValidationPipe, Get, UseGuards, Put, Delete } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { UserService } from './user.service';
 import { UserEntity } from '../entities/user.entity';
 import { User } from '../auth/user.decorator';
-import { AuthGuard } from '@nestjs/passport';
 import { UpdateUserDTO } from '../models/user.model';
 
+@ApiTags('user')
+@ApiBearerAuth()
 @Controller('user')
 export class UserController {
 
